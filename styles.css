@@ -1,0 +1,71 @@
+body {
+    background: #1a1a1a url('https://i.imgur.com/8X8Z9Zm.jpg') no-repeat center;
+    background-size: cover;
+    color: #ffd700;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  #game {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-shadow: 0 0 10px #ff4500;
+    font-size: 2.5em;
+  }
+  
+  #cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .card {
+    width: 120px;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #ffd700;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 15px #ff4500;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 14px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ffff;
+  }
+  
+  button {
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-shadow: 0 0 5px #000;
+    margin: 10px;
+  }
+  
+  button:hover {
+    background: #00ffff;
+    color: #000;
+  }
+  
+  #narrative, #diary {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
