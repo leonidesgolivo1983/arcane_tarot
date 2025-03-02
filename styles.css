@@ -1,71 +1,105 @@
+/* Variables de color para un estilo místico */
+:root {
+  /* Inspirados en el pan de oro y mosaicos bizantinos */
+  --color-oro: #d4af37;
+  
+  /* Tonos terrosos: marrón, ocre y beige */
+  --color-terroso: #a67c52;
+  --color-beige: #f5f5dc;
+  
+  /* Verdes y azules profundos */
+  --color-verde-profundo: #014421;
+  --color-azul-profundo: #002366;
+  
+  /* Rojos y púrpuras para detalles dramáticos */
+  --color-rojo: #8b0000;
+  --color-purpura: #800080;
+  
+  /* Blancos y negros para equilibrio */
+  --color-blanco: #ffffff;
+  --color-negro: #000000;
+  
+  /* Colores vibrantes y psicodélicos */
+  --color-psicodelico: #ff69b4;
+  
+  /* Base de fondo oscuro para resaltar la paleta */
+  --color-fondo: #1a1a1a;
+}
+
+/* Aplicación del fondo místico con imagen (reemplaza la URL por la de tu imagen generada) */
 body {
-    background: #1a1a1a url('https://i.imgur.com/8X8Z9Zm.jpg') no-repeat center;
-    background-size: cover;
-    color: #ffd700;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  #game {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    text-shadow: 0 0 10px #ff4500;
-    font-size: 2.5em;
-  }
-  
-  #cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-  }
-  
-  .card {
-    width: 120px;
-    height: 180px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 3px solid #ffd700;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 15px #ff4500;
-    transition: transform 0.3s, box-shadow 0.3s;
-    font-size: 14px;
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  .card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px #00ffff;
-  }
-  
-  button {
-    background: #ff4500;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-shadow: 0 0 5px #000;
-    margin: 10px;
-  }
-  
-  button:hover {
-    background: #00ffff;
-    color: #000;
-  }
-  
-  #narrative, #diary {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-  }
+  background: var(--color-fondo) url('https://tu-imagen-mistica.com/fondo.jpg') no-repeat center;
+  background-size: cover;
+  color: var(--color-oro);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Estilos para el contenedor del juego */
+#game {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--color-azul-profundo);
+}
+
+/* Título con detalles intrincados tipo "rayos X" */
+h1 {
+  font-size: 2.8em;
+  text-shadow: 0 0 20px var(--color-psicodelico), 0 0 10px var(--color-oro);
+  margin-bottom: 20px;
+}
+
+/* Botones con colores místicos y transiciones suaves */
+button {
+  background: var(--color-terroso);
+  color: var(--color-blanco);
+  border: 2px solid var(--color-oro);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-shadow: 0 0 5px var(--color-negro);
+  margin: 10px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background: var(--color-oro);
+  color: var(--color-negro);
+}
+
+/* Estilos para las cartas, con acentos místicos */
+.card {
+  width: 120px;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--color-oro);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 15px var(--color-purpura);
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-size: 14px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px var(--color-psicodelico);
+}
+
+/* Contenedores de narrativa y diario con un toque místico */
+#narrative, #diary {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 15px var(--color-verde-profundo);
+}
+
   
