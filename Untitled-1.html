@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Sendero de los Arcanos</title>
+  <!-- Enlaza tu archivo CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #1a1a1a url('tarot_background.jpg') no-repeat center;
+      background-size: cover;
+      color: #ffd700;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #game {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px #ff4500;
+      font-size: 2.5em;
+    }
+
+    #cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .card {
+      position: relative; /* Para posicionar el overlay */
+      width: 120px;
+      height: 180px;
+      background: url('tarot_background.jpg') no-repeat center / cover;
+      border: 2px solid #ffd700;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff4500;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card .overlay {
+      /* Capa semitransparente sobre la imagen */
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00ffff;
+    }
+
+    button {
+      background: #ff4500;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      text-shadow: 0 0 5px #000;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #00ffff;
+      color: #000;
+    }
+
+    #narrative, #diary {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Música de fondo en loop -->
+  <audio id="bg-music" autoplay loop>
+    <source src="musica_tarot.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <div id="game">
+    <h1>El Sendero de los Arcanos</h1>
+    <button onclick="drawCards()">Tirar Cartas</button>
+    <div id="cards">
+      <div class="card">
+        <div class="overlay">
+          <b>Pasado</b><br>
+          El Mago<br>
+          Un inventor con chispas...
+        </div>
+      </div>
+    </div>
+    <div id="narrative"></div>
+    <button onclick="viewDiary()">Ver Diario</button>
+    <div id="diary"></div>
+  </div>
+
+  <!-- Narración mística -->
+  <audio id="mystic-narration">
+    <source src="Narracion Mistica.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <!-- Enlaza tu archivo JS -->
+  <script src="script.js"></script>
+  <script>
+    function drawCards() {
+      // Lógica para tirar cartas
+      const narrative = document.getElementById('narrative');
+      narrative.innerHTML = "Has tirado las cartas. El destino se revela ante ti.";
+
+      // Iniciar narración mística
+      const narration = new SpeechSynthesisUtterance(narrative.innerHTML);
+      narration.lang = 'es-ES';
+      window.speechSynthesis.speak(narration);
+    }
+
+    function viewDiary() {
+      // Lógica para ver el diario
+      const diary = document.getElementById('diary');
+      diary.innerHTML = "Aquí está tu diario místico.";
+    }
+  </script>
+</body>
+</html>
