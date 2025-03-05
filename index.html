@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>El Sendero de los Arcanos</title>
   <!-- Enlaza tu archivo CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Música de fondo en loop -->
-  <audio id="bg-music" autoplay loop>
-    <source src="Musica Tarot.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-
-  <div id="game">
+  <!-- Pantalla de inicio con botones para iniciar y ver el diario -->
+  <div id="start-screen">
     <h1>El Sendero de los Arcanos</h1>
-    <button onclick="drawCards()">Tirar Cartas</button>
+    <button id="start-btn" onclick="startGame()">Iniciar Juego</button>
+    <button id="diary-btn" onclick="viewDiary()">Ver Diario</button>
+  </div>
+  
+  <!-- Contenedor principal del juego, oculto inicialmente -->
+  <div id="game" style="display: none;">
+    <!-- Música de fondo en loop -->
+    <audio id="bg-music" loop>
+      <source src="musica_tarot.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el audio.
+    </audio>
+    
+    <!-- Botones del juego -->
+    <div id="game-controls">
+      <button onclick="drawCombinedReading()">Tirar Cartas (Cruz Celestial)</button>
+      <button onclick="viewDiary()">Ver Diario</button>
+      <button onclick="joinMultiplayer()">Unirse a Partida Multijugador</button>
+    </div>
+    
+    <!-- Contenedores para mostrar cartas y lectura -->
     <div id="cards"></div>
     <div id="narrative"></div>
-    <button onclick="viewDiary()">Ver Diario</button>
     <div id="diary"></div>
   </div>
-
-  <!-- Narración mística -->
-  <audio id="mystic-narration">
-    <source src="Narracion Mistica.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
-
+  
+  <!-- Sección de Reglas del Juego (parte inferior de la pantalla) -->
+  <div id="rules">
+    <p>
+      <small>
+        Reglas del Juego: Cada jugador realiza una tirada combinada (Cruz Celestial) para descubrir su destino. 
+        La tirada consta de 10 cartas que representan aspectos como la situación actual, desafíos, influencias pasadas, 
+        aspiraciones y el desenlace. La lectura se acompaña de una narración mística y se guarda en el diario para 
+        futuras consultas. ¡Que el destino te guíe!
+      </small>
+    </p>
+  </div>
+  
   <!-- Enlaza tu archivo JS -->
   <script src="script.js"></script>
 </body>

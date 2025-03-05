@@ -1,60 +1,68 @@
 /* Variables de color para un estilo místico */
 :root {
-  /* Inspirados en el pan de oro y mosaicos bizantinos */
   --color-oro: #d4af37;
-  
-  /* Tonos terrosos: marrón, ocre y beige */
   --color-terroso: #a67c52;
   --color-beige: #f5f5dc;
-  
-  /* Verdes y azules profundos */
   --color-verde-profundo: #014421;
   --color-azul-profundo: #002366;
-  
-  /* Rojos y púrpuras para detalles dramáticos */
   --color-rojo: #8b0000;
   --color-purpura: #800080;
-  
-  /* Blancos y negros para equilibrio */
   --color-blanco: #ffffff;
   --color-negro: #000000;
-  
-  /* Colores vibrantes y psicodélicos */
   --color-psicodelico: #ff69b4;
-  
-  /* Base de fondo oscuro para resaltar la paleta */
   --color-fondo: #1a1a1a;
 }
 
-/* Aplicación del fondo místico con imagen (reemplaza la URL por la de tu imagen generada) */
+/* Fondo para la página: usa la imagen de portada */
 body {
-  background: var(--color-fondo) url('https://tu-imagen-mistica.com/fondo.jpg') no-repeat center;
-  background-size: cover;
-  color: var(--color-oro);
-  font-family: Arial, sans-serif;
-  text-align: center;
   margin: 0;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  color: var(--color-oro);
+  text-align: center;
+  background: var(--color-fondo) url("img/tarot_background.webp") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Estilos para el contenedor del juego */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.7; }
+  45%, 55% { opacity: 0.9; }
+}
+
+/* Pantalla de inicio */
+#start-screen {
+  margin-top: 100px;
+}
+
+/* Contenedor del juego */
 #game {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 20px auto;
   background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px var(--color-azul-profundo);
 }
 
-/* Título con detalles intrincados tipo "rayos X" */
+/* Título místico */
 h1 {
   font-size: 2.8em;
   text-shadow: 0 0 20px var(--color-psicodelico), 0 0 10px var(--color-oro);
   margin-bottom: 20px;
 }
 
-/* Botones con colores místicos y transiciones suaves */
+/* Botones */
 button {
   background: var(--color-terroso);
   color: var(--color-blanco);
@@ -73,27 +81,55 @@ button:hover {
   color: var(--color-negro);
 }
 
-/* Estilos para las cartas, con acentos místicos */
+/* Área de cartas */
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+/* Cartas: usa la imagen de fondo para las cartas */
 .card {
+  position: relative;
   width: 120px;
   height: 180px;
-  background: rgba(0, 0, 0, 0.7);
+  background: url("img/tarot_background.jpg.webp") no-repeat center / cover;
   border: 2px solid var(--color-oro);
   border-radius: 10px;
-  padding: 10px;
   box-shadow: 0 0 15px var(--color-purpura);
-  transition: transform 0.3s, box-shadow 0.3s;
-  font-size: 14px;
   overflow: hidden;
   text-align: center;
+  transform: scale(0) rotate(360deg);
+  animation: dealCard 1s forwards;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px var(--color-psicodelico);
+@keyframes dealCard {
+  0% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
-/* Contenedores de narrativa y diario con un toque místico */
+/* Overlay para el texto en las cartas */
+.card .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Narrativa y diario */
 #narrative, #diary {
   background: rgba(0, 0, 0, 0.8);
   padding: 15px;
@@ -102,4 +138,12 @@ button:hover {
   box-shadow: 0 0 15px var(--color-verde-profundo);
 }
 
-  
+/* Reglas del Juego */
+#rules {
+  margin-top: 30px;
+  text-align: center;
+  color: #ccc;
+  font-size: 0.8em;
+  padding: 10px;
+}
+
