@@ -35,6 +35,73 @@ const fullDeckKeys = Object.keys(tarotDeck).map(Number);
 /*******************************************
  * 3) POSICIONES DE LA TIRADA CRUZ CELESTIAL
  ******************************************/
+// MAZO DE 78 CARTAS (Nombres en español)
+const tarotDeck = [
+  // Arcanos Mayores
+  "El Loco", "El Mago", "La Sacerdotisa", "La Emperatriz", "El Emperador", "El Sumo Sacerdote",
+  "Los Enamorados", "El Carro", "La Justicia", "El Ermitaño", "La Rueda de la Fortuna", "La Fuerza",
+  "El Colgado", "La Muerte", "La Templanza", "El Diablo", "La Torre", "La Estrella", "La Luna",
+  "El Sol", "El Juicio", "El Mundo",
+  // Bastos
+  "As de Bastos", "Dos de Bastos", "Tres de Bastos", "Cuatro de Bastos", "Cinco de Bastos", "Seis de Bastos",
+  "Siete de Bastos", "Ocho de Bastos", "Nueve de Bastos", "Diez de Bastos", "Sota de Bastos", "Caballero de Bastos",
+  "Reina de Bastos", "Rey de Bastos",
+  // Copas
+  "As de Copas", "Dos de Copas", "Tres de Copas", "Cuatro de Copas", "Cinco de Copas", "Seis de Copas",
+  "Siete de Copas", "Ocho de Copas", "Nueve de Copas", "Diez de Copas", "Sota de Copas", "Caballero de Copas",
+  "Reina de Copas", "Rey de Copas",
+  // Espadas
+  "As de Espadas", "Dos de Espadas", "Tres de Espadas", "Cuatro de Espadas", "Cinco de Espadas", "Seis de Espadas",
+  "Siete de Espadas", "Ocho de Espadas", "Nueve de Espadas", "Diez de Espadas", "Sota de Espadas", "Caballero de Espadas",
+  "Reina de Espadas", "Rey de Espadas",
+  // Oros
+  "As de Oros", "Dos de Oros", "Tres de Oros", "Cuatro de Oros", "Cinco de Oros", "Seis de Oros",
+  "Siete de Oros", "Ocho de Oros", "Nueve de Oros", "Diez de Oros", "Sota de Oros", "Caballero de Oros",
+  "Reina de Oros", "Rey de Oros"
+];
+
+// Diario simple en localStorage
+let diary = JSON.parse(localStorage.getItem("diary")) || [];
+
+function drawCards(numCards = 5) {
+  const drawnCards = [];
+  while(drawnCards.length < numCards){
+    const randomIndex = Math.floor(Math.random() * tarotDeck.length);
+    const card = tarotDeck[randomIndex];
+    if(!drawnCards.includes(card)){
+      drawnCards.push(card);
+    }
+  }
+  const cardsContainer = document.getElementById('cards');
+  cardsContainer.innerHTML = '';
+  drawnCards.forEach(card => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.innerHTML = `<div class="overlay">${card}</div>`;
+    cardsContainer.appendChild(cardDiv);
+  });
+  // Narrativa automática
+  const narrative = document.getElementById('narrative');
+  narrative.innerHTML = "Las cartas han hablado: " + drawnCards.join(", ") + ".";
+  // Voz
+  const narration = new SpeechSynthesisUtterance(narrative.innerHTML);
+  narration.lang = 'es-ES';
+  window.speechSynthesis.speak(narration);
+  // Guarda la tirada en el diario
+  diary.push({ date: new Date().toLocaleString(), cards: drawnCards });
+  localStorage.setItem('diary', JSON.stringify(diary));
+}
+
+function viewDiary() {
+  const diaryDiv = document.getElementById('diary');
+  if (diary.length === 0) {
+    diaryDiv.innerHTML = "Aquí está tu diario místico, donde se guardan tus lecturas anteriores.";
+    return;
+  }
+  diaryDiv.innerHTML = diary.map((entry, i) => `
+    <p><b>Lectura ${i+1} - ${entry.date}</b><br>Cartas: ${entry.cards.join(', ')}</p>
+  `).join('');
+}
 // Definir las 10 posiciones de la tirada combinada (Cruz Celestial)
 const readingPositions = [
   { pos: 1, title: "Situación Actual", casa: "Casa I", description: "Estado presente y energía personal." },
