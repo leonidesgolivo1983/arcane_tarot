@@ -247,3 +247,30 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Sendero de los Arcanos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Música de fondo -->
+  <audio id="bg-music" autoplay loop>
+    <source src="musica_tarot.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <div id="game">
+    <h1>El Sendero de los Arcanos</h1>
+    <button onclick="drawCards()">Tirar Cartas</button>
+    <div id="cards"></div>
+    <div id="narrative"></div>
+    <button onclick="viewDiary()">Ver Diario</button>
+    <div id="diary"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
