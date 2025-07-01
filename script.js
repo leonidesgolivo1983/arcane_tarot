@@ -270,4 +270,97 @@ function drawCombinedReading() {
   diary.push(chapter);
   localStorage.setItem("diary", JSON.stringify(diary));
 }
+// Mazo de 78 cartas de Tarot (Arcanos Mayores y Menores)
+const tarotDeck = [
+  // Arcanos Mayores
+  { name: "El Loco", value: 0, desc: "Inicio, libertad y aventura." },
+  { name: "El Mago", value: 1, desc: "Habilidad y poder para manifestar." },
+  { name: "La Sacerdotisa", value: 2, desc: "Misterio, intuición y sabiduría interior." },
+  { name: "La Emperatriz", value: 3, desc: "Creatividad, abundancia y conexión con la naturaleza." },
+  { name: "El Emperador", value: 4, desc: "Autoridad, estructura y liderazgo." },
+  { name: "El Hierofante", value: 5, desc: "Tradición, enseñanza y espiritualidad." },
+  { name: "Los Enamorados", value: 6, desc: "Decisión, amor y relaciones." },
+  { name: "El Carro", value: 7, desc: "Determinación y victoria." },
+  { name: "La Justicia", value: 8, desc: "Equilibrio y verdad." },
+  { name: "El Ermitaño", value: 9, desc: "Búsqueda interior y sabiduría." },
+  { name: "La Rueda de la Fortuna", value: 10, desc: "Cambio, ciclos y destino." },
+  { name: "La Fuerza", value: 11, desc: "Valor y control de las pasiones." },
+  { name: "El Colgado", value: 12, desc: "Perspectiva, sacrificio y pausa." },
+  { name: "La Muerte", value: 13, desc: "Fin de ciclo y transformación." },
+  { name: "La Templanza", value: 14, desc: "Equilibrio, paciencia y armonía." },
+  { name: "El Diablo", value: 15, desc: "Ataduras y sombra personal." },
+  { name: "La Torre", value: 16, desc: "Colapso y revelación súbita." },
+  { name: "La Estrella", value: 17, desc: "Esperanza y renovación." },
+  { name: "La Luna", value: 18, desc: "Ilusión, sueños y el subconsciente." },
+  { name: "El Sol", value: 19, desc: "Éxito, alegría y claridad." },
+  { name: "El Juicio", value: 20, desc: "Renacimiento, juicio y llamado interior." },
+  { name: "El Mundo", value: 21, desc: "Culminación y realización." },
+
+  // Bastos
+  { name: "As de Bastos", value: 1, desc: "Nuevo impulso, creatividad, inspiración." },
+  { name: "Dos de Bastos", value: 2, desc: "Planificación, visión, decisión." },
+  { name: "Tres de Bastos", value: 3, desc: "Progreso, expansión, exploración." },
+  { name: "Cuatro de Bastos", value: 4, desc: "Celebración, hogar, logro." },
+  { name: "Cinco de Bastos", value: 5, desc: "Conflicto, competencia, desafío." },
+  { name: "Seis de Bastos", value: 6, desc: "Victoria, reconocimiento, éxito público." },
+  { name: "Siete de Bastos", value: 7, desc: "Defensa, perseverancia, coraje." },
+  { name: "Ocho de Bastos", value: 8, desc: "Rapidez, acción, movimiento." },
+  { name: "Nueve de Bastos", value: 9, desc: "Resistencia, tenacidad, último esfuerzo." },
+  { name: "Diez de Bastos", value: 10, desc: "Carga, responsabilidad, opresión." },
+  { name: "Sota de Bastos", value: 11, desc: "Mensaje, aventura, inicio energético." },
+  { name: "Caballero de Bastos", value: 12, desc: "Impulso, viaje, entusiasmo." },
+  { name: "Reina de Bastos", value: 13, desc: "Confianza, pasión, liderazgo." },
+  { name: "Rey de Bastos", value: 14, desc: "Visión, inspiración, poder de acción." },
+
+  // Copas
+  { name: "As de Copas", value: 1, desc: "Amor, nuevos sentimientos, intuición." },
+  { name: "Dos de Copas", value: 2, desc: "Unión, conexión, atracción." },
+  { name: "Tres de Copas", value: 3, desc: "Celebración, amistad, comunidad." },
+  { name: "Cuatro de Copas", value: 4, desc: "Meditación, insatisfacción, desapego." },
+  { name: "Cinco de Copas", value: 5, desc: "Pérdida, arrepentimiento, duelo." },
+  { name: "Seis de Copas", value: 6, desc: "Recuerdos, nostalgia, reencuentros." },
+  { name: "Siete de Copas", value: 7, desc: "Opciones, ilusiones, fantasía." },
+  { name: "Ocho de Copas", value: 8, desc: "Abandono, búsqueda, cambio de rumbo." },
+  { name: "Nueve de Copas", value: 9, desc: "Satisfacción, deseo cumplido, placer." },
+  { name: "Diez de Copas", value: 10, desc: "Felicidad, armonía, familia." },
+  { name: "Sota de Copas", value: 11, desc: "Mensaje emocional, sensibilidad, novedad." },
+  { name: "Caballero de Copas", value: 12, desc: "Romanticismo, idealismo, búsqueda del amor." },
+  { name: "Reina de Copas", value: 13, desc: "Compasión, intuición, comprensión profunda." },
+  { name: "Rey de Copas", value: 14, desc: "Equilibrio emocional, diplomacia, empatía." },
+
+  // Espadas
+  { name: "As de Espadas", value: 1, desc: "Claridad mental, verdad, revelación." },
+  { name: "Dos de Espadas", value: 2, desc: "Indecisión, bloqueo, dilema." },
+  { name: "Tres de Espadas", value: 3, desc: "Dolor, traición, tristeza." },
+  { name: "Cuatro de Espadas", value: 4, desc: "Descanso, recuperación, contemplación." },
+  { name: "Cinco de Espadas", value: 5, desc: "Derrota, conflicto, tensión." },
+  { name: "Seis de Espadas", value: 6, desc: "Transición, viaje, alejamiento." },
+  { name: "Siete de Espadas", value: 7, desc: "Estrategia, engaño, discreción." },
+  { name: "Ocho de Espadas", value: 8, desc: "Restricción, miedo, sensación de encierro." },
+  { name: "Nueve de Espadas", value: 9, desc: "Ansiedad, preocupación, insomnio." },
+  { name: "Diez de Espadas", value: 10, desc: "Final doloroso, ruina, tocar fondo." },
+  { name: "Sota de Espadas", value: 11, desc: "Curiosidad, vigilancia, alerta." },
+  { name: "Caballero de Espadas", value: 12, desc: "Acción rápida, coraje, impetuosidad." },
+  { name: "Reina de Espadas", value: 13, desc: "Independencia, percepción, honestidad." },
+  { name: "Rey de Espadas", value: 14, desc: "Autoridad intelectual, lógica, juicio justo." },
+
+  // Oros
+  { name: "As de Oros", value: 1, desc: "Prosperidad, oportunidad, inicio material." },
+  { name: "Dos de Oros", value: 2, desc: "Adaptabilidad, equilibrio, cambios." },
+  { name: "Tres de Oros", value: 3, desc: "Colaboración, trabajo en equipo, construcción." },
+  { name: "Cuatro de Oros", value: 4, desc: "Control, seguridad, estabilidad financiera." },
+  { name: "Cinco de Oros", value: 5, desc: "Dificultad material, pérdida, escasez." },
+  { name: "Seis de Oros", value: 6, desc: "Generosidad, ayuda, equilibrio en el dar y recibir." },
+  { name: "Siete de Oros", value: 7, desc: "Espera, evaluación, inversión a largo plazo." },
+  { name: "Ocho de Oros", value: 8, desc: "Dedicación, aprendizaje, perfeccionamiento." },
+  { name: "Nueve de Oros", value: 9, desc: "Logro, recompensa, independencia." },
+  { name: "Diez de Oros", value: 10, desc: "Herencia, riqueza familiar, tradición." },
+  { name: "Sota de Oros", value: 11, desc: "Nuevas oportunidades, estudio, comienzo práctico." },
+  { name: "Caballero de Oros", value: 12, desc: "Responsabilidad, rutina, perseverancia." },
+  { name: "Reina de Oros", value: 13, desc: "Seguridad, prosperidad, generosidad." },
+  { name: "Rey de Oros", value: 14, desc: "Éxito material, estabilidad, liderazgo práctico." }
+];
+
+// Lista de claves para el mazo completo
+const fullDeckKeys = Array.from(Array(tarotDeck.length).keys());
 
